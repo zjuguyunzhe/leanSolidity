@@ -1,8 +1,22 @@
 
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.3;
 
+//直接引用github代码
 import "github.com/Arachnid/solidity-stringutils/strings.sol";
 
+
+/*
+* 字符串也是数组
+* 没有.length属性 bytes(s).length获取字节数组的长度
+* bytes(s)[k]:获取字节数组下标k的UTF-8编码
+* bytes:用来存储任意长度的字节数据
+* string:用来存储UTF-8编码的字符串数据
+*
+* solidity中的string功能是很弱的，所以需要引入第三方库stringutils
+* 字符长度
+* 匹配字符串：find(), startsWith(), endsWith()
+* 字符串拼接
+*/
 contract testStr {
 
     string public str1 = "登链学院";
@@ -10,7 +24,7 @@ contract testStr {
     // https://www.qqxiuzi.cn/bianma/Unicode-UTF.php
     bytes public bs1 = "登链学院";
 
-        // utf 编码长度
+    // utf-8 编码长度
     function getLen() public view returns (uint) {
         return bytes(str1).length;
     }

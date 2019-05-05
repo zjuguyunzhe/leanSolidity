@@ -1,4 +1,4 @@
-pragma solidity ^0.4.24;  //  0.4.25 - 0.5
+pragma solidity ^0.5.3;
 
 
 // 引入一个合约接口文件： 使用路径及文件名 ./ 表示当前目录
@@ -35,7 +35,7 @@ contract SimpleStorage {
         emit Set(x);
     }
 
-    function get() public constant returns (uint) {
+    function get() public view returns (uint) {
         return storedData;
     }
 

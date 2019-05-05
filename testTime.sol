@@ -12,7 +12,8 @@ contract testTime {
     function currTimeStamp() public view returns (uint256){
         return now;
     }
-
+    
+    //实现一天最多执行一次
     function doSomething() public {
         if (now >= lastTs + 1 days) {
             // ...

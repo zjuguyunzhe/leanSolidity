@@ -1,4 +1,4 @@
-pragma solidity ^0.4.0;
+pragma solidity ^0.5.3;
 
 contract TestBool {
 
@@ -9,11 +9,11 @@ contract TestBool {
     bool a = true;
     bool b = false;
 
-    function test1() public constant returns (bool) {
+    function test1() public view returns (bool) {
         return a && b;
     }
 
-    function test2() public constant returns (bool) {
+    function test2() public view returns (bool) {
         return a || b;
     }
 

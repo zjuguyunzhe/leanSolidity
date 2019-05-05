@@ -1,12 +1,12 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.5.3;
 
 contract testLiteral{
 
-    function test() public pure returns (int ) {
-        return -2e10;
+    function test() public pure returns (int) {
+        return -2e10; //2 * 10^10
     }
 
-    function test2() public pure returns (uint ) {
+    function test2() public pure returns (uint) {
         uint a = 5/2 + 5/2;
         return a;
     }
@@ -18,7 +18,7 @@ contract testLiteral{
     // 数字常量表达式，一旦其中含有非常量表达式，它就会被转为一个非常量类型，不同类型的之间没法进行运算，
     function test3() public {
         uint128 a = 1;   // a 不再是常量类型
-          uint128 b = 2.5 + a + 0.5;
+        uint128 b = 2.5 + a + 0.5;
     }
 
     function testEn() public pure returns (string) {
@@ -30,13 +30,12 @@ contract testLiteral{
     }
 
     function testString() public pure returns (string) {
-           // "\x61\x62"
+        // "\x61\x62"
         return "Tiny\u718A";
     }
 
-    function hexLiteralBytes() public pure  returns (bytes2, bytes1, bytes1) {
-     bytes2 a = hex"aabb";
-     return (a, a[0], a[1]);
- }
-
+    function hexLiteralBytes() public pure returns (bytes2, bytes1, bytes1) {
+        bytes2 a = hex"aabb";
+        return (a, a[0], a[1]);
+    }
 }

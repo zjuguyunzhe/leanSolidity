@@ -1,4 +1,4 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.3;
 
 contract testCast {
 
@@ -54,7 +54,8 @@ contract testCast {
 
         return (b, addr);
     }
-
+    
+    //delete不影响值拷贝的变量
     uint data;
     uint[] dataArray;
 
@@ -72,7 +73,8 @@ contract testCast {
         /* delete y; */
 
     }
-
+    
+    //delete对映射无效
     mapping(address=>uint) balances;
     function deleteMap() public {
         // 非法

@@ -1,4 +1,4 @@
-pragma solidity ^0.4.0;
+pragma solidity ^0.5.3;
 
 contract TestFixed {
     ufixed32x1 f;
@@ -11,16 +11,16 @@ contract TestFixed {
     string a = "abc";
 
     // 比较运算 位运算
-    function testCompare() public constant returns (bytes3 ) {
+    function testCompare() public view returns (bytes3) {
         return bt2 & bt3;
     }
 
-    function getFirst() public constant returns (byte ) {
+    function getFirst() public view returns (byte) {
         return bt3[0];
     }
 
 
-    function getLength() public constant returns (uint ) {
+    function getLength() public constant returns (uint) {
         return bt2.length;
     }
 

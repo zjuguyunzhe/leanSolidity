@@ -1,4 +1,4 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.3;
 
 // 引入试验版本
 pragma experimental ABIEncoderV2;
@@ -41,7 +41,11 @@ contract testStruct {
         return ct.myBool;
     }
 
-        // 合法
+    /*
+    * 结构体目前仅支持在合约内部使用，或继承合约内使用，
+    * 如果要在参数和返回值中使用结构体，函数必须声明Internal
+    */
+    // 合法
     function interFunc(CustomType ct) internal {
     }
 

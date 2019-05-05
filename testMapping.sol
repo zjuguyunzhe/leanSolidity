@@ -1,7 +1,6 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.3;
 
 import "./iterable_mapping.sol";
-
 
 contract TestMapping {
 
@@ -11,7 +10,15 @@ contract TestMapping {
     function update(uint newBalance) public {
         balances[msg.sender] = newBalance;
     }
-
+    
+    /*
+    * 映射局限性
+    * 1. 只能作为状态变量
+    * 2. 无法遍历访问
+    * 没有长度
+    * 没有键集合
+    * 没有值集合
+    */
     function test() {
        mapping(address => uint) a;
     }

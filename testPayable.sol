@@ -1,5 +1,11 @@
-pragma solidity ^0.4.20;
+pragma solidity ^0.5.3;
 
+/*
+* payable表示一个函数能附加以太币调用
+* 1. 普通函数
+* 2. 构造函数
+* 3. 回退函数
+*/
 contract testPayable {
 
     constructor() public payable {

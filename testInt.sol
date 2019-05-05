@@ -1,4 +1,4 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.5.3;
 
 contract testInt {
     int8 a = -1;
@@ -11,19 +11,21 @@ contract testInt {
         z = x + y;
     }
 
-    function divide(uint x, uint y ) public pure returns (uint z) {
+    function divide(uint x, uint y) public pure returns (uint z) {
         z = x / y;
     }
-
+    
+    //same like x * 2^y
     function leftshift(int x, uint y) public pure returns (int z){
         z = x << y;
     }
-
+    
+    //same like x / 2^y
     function rightshift(int x, uint y) public pure returns (int z){
         z = x >> y;
     }
 
-    function testPlusPlus() public pure returns (uint ) {
+    function testPlusPlus() public pure returns (uint) {
         uint x = 1;
         uint y = ++x; // c = ++a;
         return y;

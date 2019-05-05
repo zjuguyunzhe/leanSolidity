@@ -1,4 +1,4 @@
-pragma solidity ^0.4.0;
+pragma solidity ^0.5.3;
 
 contract TestLoc {
     uint[] x; //  x的存储位置是storage
