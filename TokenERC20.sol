@@ -1,6 +1,8 @@
-pragma solidity ^0.4.16;
+pragma solidity ^0.5.3;
 
-interface tokenRecipient { function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData) public; }
+interface tokenRecipient { 
+    function receiveApproval(address _from, uint256 _value, address _token, bytes calldata _extraData) external; 
+}
 
 contract TokenERC20 {
     string public name;
@@ -16,7 +18,7 @@ contract TokenERC20 {
     event Burn(address indexed from, uint256 value);
 
 
-    function TokenERC20(uint256 initialSupply, string tokenName, string tokenSymbol) public {
+    constructor(uint256 initialSupply, string memory tokenName, string memory tokenSymbol) public {
         totalSupply = initialSupply * 10 ** uint256(decimals);
         balanceOf[msg.sender] = totalSupply;
         name = tokenName;
@@ -25,13 +27,13 @@ contract TokenERC20 {
 
 
     function _transfer(address _from, address _to, uint _value) internal {
-        require(_to != 0x0);
+        require(_to != address(0x0));
         require(balanceOf[_from] >= _value);
         require(balanceOf[_to] + _value > balanceOf[_to]);
         uint previousBalances = balanceOf[_from] + balanceOf[_to];
         balanceOf[_from] -= _value;
         balanceOf[_to] += _value;
-        Transfer(_from, _to, _value);
+        emit Transfer(_from, _to, _value);
         assert(balanceOf[_from] + balanceOf[_to] == previousBalances);
     }
 
@@ -52,10 +54,10 @@ contract TokenERC20 {
         return true;
     }
 
-    function approveAndCall(address _spender, uint256 _value, bytes _extraData) public returns (bool success) {
+    function approveAndCall(address _spender, uint256 _value, bytes memory _extraData) public returns (bool success) {
         tokenRecipient spender = tokenRecipient(_spender);
         if (approve(_spender, _value)) {
-            spender.receiveApproval(msg.sender, _value, this, _extraData);
+            spender.receiveApproval(msg.sender, _value, address(this), _extraData);
             return true;
         }
     }
@@ -64,7 +66,7 @@ contract TokenERC20 {
         require(balanceOf[msg.sender] >= _value);
         balanceOf[msg.sender] -= _value;
         totalSupply -= _value;
-        Burn(msg.sender, _value);
+        emit Burn(msg.sender, _value);
         return true;
     }
 
@@ -74,7 +76,7 @@ contract TokenERC20 {
         balanceOf[_from] -= _value;
         allowance[_from][msg.sender] -= _value;
         totalSupply -= _value;
-        Burn(_from, _value);
+        emit Burn(_from, _value);
         return true;
     }
 }
